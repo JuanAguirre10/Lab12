@@ -1,4 +1,4 @@
-IF OBJECT_ID('Socios', 'U') IS NOT NULL DROP TABLE Socios;
+﻿IF OBJECT_ID('Socios', 'U') IS NOT NULL DROP TABLE Socios;
 IF OBJECT_ID('Membresias', 'U') IS NOT NULL DROP TABLE Membresias;
 GO
 

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using GimnasioApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.ConfigureHttpJsonOptions(o => o.SerializerOptions.NumberHandling = JsonNumberHandling.Strict);
 
 builder.Services.AddDbContext<GimnasioContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Gimnasio")));
