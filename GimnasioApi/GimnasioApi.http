@@ -1,0 +1,92 @@
+@host = http://localhost:5206
+
+### Membresías
+GET {{host}}/api/membresias
+
+###
+GET {{host}}/api/membresias/1
+
+###
+GET {{host}}/api/membresias/1/socios
+
+###
+POST {{host}}/api/membresias
+Content-Type: application/json
+
+{ "nombre": "Semestral", "precio": 499.90, "duracionDias": 180 }
+
+###
+PUT {{host}}/api/membresias/4
+Content-Type: application/json
+
+{ "id": 4, "nombre": "Semestral Plus", "precio": 549.90, "duracionDias": 180 }
+
+###
+DELETE {{host}}/api/membresias/4
+
+### Socios
+GET {{host}}/api/socios
+
+###
+GET {{host}}/api/socios?membresiaId=1&buscar=quispe
+
+###
+GET {{host}}/api/socios/1
+
+###
+POST {{host}}/api/socios
+Content-Type: application/json
+
+{ "nombres": "Ana Lucía Gutiérrez Ramos", "dni": "73581246", "telefono": "945127836", "fechaInscripcion": "2026-11-04", "membresiaId": 2 }
+
+###
+PUT {{host}}/api/socios/6
+Content-Type: application/json
+
+{ "id": 6, "nombres": "Ana Lucía Gutiérrez Ramos", "dni": "73581246", "telefono": "945127899", "fechaInscripcion": "2026-11-04", "membresiaId": 3 }
+
+###
+DELETE {{host}}/api/socios/6
+
+### Casos de error
+# 404: no existe
+GET {{host}}/api/socios/999
+
+###
+# 400: la membresía no existe
+POST {{host}}/api/socios
+Content-Type: application/json
+
+{ "nombres": "Pedro Castillo Ríos", "dni": "41236587", "telefono": "912345678", "fechaInscripcion": "2026-11-04", "membresiaId": 999 }
+
+###
+# 400: datos inválidos
+POST {{host}}/api/socios
+Content-Type: application/json
+
+{ "nombres": "", "dni": "123", "telefono": "12345", "fechaInscripcion": "2026-11-04", "membresiaId": 1 }
+
+###
+# 400: el id de la ruta no coincide
+PUT {{host}}/api/membresias/1
+Content-Type: application/json
+
+{ "id": 2, "nombre": "Mensual", "precio": 99.90, "duracionDias": 30 }
+
+###
+# 409: membresía duplicada
+POST {{host}}/api/membresias
+Content-Type: application/json
+
+{ "nombre": "Mensual", "precio": 120.00, "duracionDias": 30 }
+
+###
+# 409: membresía con socios
+DELETE {{host}}/api/membresias/1
+
+###
+# 409: DNI duplicado
+POST {{host}}/api/socios
+Content-Type: application/json
+
+{ "nombres": "Carlos Quispe Huamán", "dni": "45872136", "telefono": "987654321", "fechaInscripcion": "2026-11-04", "membresiaId": 1 }
