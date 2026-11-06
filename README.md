@@ -2,7 +2,9 @@
 
 Web API REST para administrar las membresías y los socios de un gimnasio. Está hecha con ASP.NET Core (.NET 10) y Entity Framework Core con **base de datos primero**: la base `GimnasioDB` se crea con el script `db/GimnasioDB.sql` y el modelo se genera con Scaffold. Los controladores usan directamente el `DbContext` y todo el acceso a datos se hace con LINQ.
 
-Swagger publicado: (pendiente)
+Swagger publicado: http://gimnasio-aguirre.runasp.net/swagger
+
+La API y la base de datos (SQL Server 2025) están en el plan gratuito de MonsterASP.NET.
 
 ## Entidades
 
@@ -68,6 +70,10 @@ dotnet run --launch-profile http
 ```
 
 La cadena de conexión no está en `appsettings.json`. En local se lee de los secretos de usuario y en la nube de la variable de entorno `ConnectionStrings__Gimnasio`.
+
+## Publicación
+
+En MonsterASP.NET la variable `ConnectionStrings__Gimnasio` se crea en Websites → sitio → Scripting → Environment variables, con la cadena de acceso local de la base. El plan gratuito corre la aplicación en 32 bits, así que se publica en modo portable (dependiente del marco, sin elegir runtime win-x64).
 
 ## Scaffold
 
